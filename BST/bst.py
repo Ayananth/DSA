@@ -15,6 +15,12 @@ inorder traversal will give you a sorted array
 | Traversal | O(n)         | O(n)                     |
 
 
+Tree Traversal =>
+
+    inorder => left, root, right
+    preorder => root, left, right
+    postorder => left, right, root
+
 
 '''
 
@@ -76,6 +82,32 @@ class BST:
 
         return False
     
+    #traversal
+
+    def inorder(self):
+        '''It  will return a sorted arary'''
+        print("Inorder Travesal: ", end=" ")
+        def _inorder(root):
+            if root is None: return
+            _inorder(root.left)
+            print(root.data, end=" ")
+            _inorder(root.right)
+        
+        _inorder(self.root)
+        print()
+
+    def preorder(self):
+        '''root, left, right'''
+        print("Preorder: ", end=" ")
+        def _preorder(root):
+            if root is None: return
+            print(root.data, end= " ")
+            _preorder(root.left)
+            _preorder(root.right)
+
+        _preorder(self.root)
+        print()
+    
 
     
 bst = BST()
@@ -87,6 +119,8 @@ bst.insert(6)
 
 
 
-bst.level_order()
+# bst.level_order()
 
-print(bst.search(2))
+# print(bst.search(2))
+bst.inorder()
+bst.preorder()
