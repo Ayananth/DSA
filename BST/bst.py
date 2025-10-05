@@ -170,6 +170,23 @@ class BST:
             root = root.left
         
         return root
+    
+
+    def find_min(self):
+        if self.root is None:
+            return
+        current = self.root
+        while current.left:
+            current = current.left
+        print("Min value: ", current.data)
+
+    def find_max(self):
+        if self.root is None:
+            return
+        current = self.root
+        while current.right:
+            current = current.right
+        print("Max value: ", current.data)
         
 
         
@@ -198,4 +215,6 @@ bst.inorder()
 
 # print(bst.search(2))
 bst.inorder()
+bst.find_min()
+bst.find_max()
 # bst.preorder()
