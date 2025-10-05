@@ -22,6 +22,11 @@ Tree Traversal =>
     postorder => left, right, root
 
 
+
+check week 16 in the tracker sheet
+https://docs.google.com/spreadsheets/d/1YE98QKlEqcQOC9lCIHANE2yZorHf4IttgW-TGChl_z8/edit?gid=1938016385#gid=1938016385
+
+
 '''
 
 from collections import deque
@@ -107,6 +112,73 @@ class BST:
 
         _preorder(self.root)
         print()
+
+    
+    def delete(self, data):
+        '''
+        for deleting value, we have 3 conditions
+
+        first search for the node
+
+        1. node is a leaf node  => just delete the node
+        2. node has only one child => swap the nodes and delete the leaf node
+        3. node has 2 child => find the inorder successor (min value/the deepest left child from the right sub tree)
+                               replace this node with the root node(the deletion node)
+                               now, the node to be deleted in at leaf node, delete it now 
+        
+        '''
+        self.root = self._delete(self.root, data)
+
+    def _delete(self, root, data):
+
+        if root is None:
+            return None
+        
+        #search for the node
+        if data < root.data:
+            root.left = self._delete(root.left, data)
+        elif data > root.data:
+            root.right = self._delete(root.right, data)
+
+        else:
+            #found the data, now check the conditions
+
+
+            #case 1 => no leaf node
+            if root.left is None and root.right is None:
+                return None
+            
+            #case 2 => one leaf node
+            if root.left is None: #means only right child is there. so return the right child. it will be stored in the root
+                return root.right
+            elif root.right is None:
+                return root.left
+            
+            #case 3 => find inorder successor
+            min_val = self._inorder_successor(root.right)
+            #replace it with the node to be delted
+            root.data = min_val.data
+            #delete the actual min node., that should be a leaf node
+            root.right = self._delete(root.right, min_val)
+
+        return root
+
+
+    def _inorder_successor(self, root):
+        
+        while root.left:
+            root = root.left
+        
+        return root
+        
+
+        
+
+
+
+        
+
+
     
 
     
@@ -116,6 +188,9 @@ bst.insert(15)
 bst.insert(5)
 bst.insert(1)
 bst.insert(6)
+bst.inorder()
+
+# bst.delete(15)
 
 
 
@@ -123,4 +198,4 @@ bst.insert(6)
 
 # print(bst.search(2))
 bst.inorder()
-bst.preorder()
+# bst.preorder()
