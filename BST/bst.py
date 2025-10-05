@@ -190,6 +190,9 @@ class BST:
 
     
     def height(self):
+        '''
+        number of edges from root to the deepest node
+        '''
         print(self._height(self.root))
 
     def _height(self, root):
@@ -203,6 +206,52 @@ class BST:
 
 
         return height
+    
+    def depth(self, node):
+        '''
+        Distance from root to that node
+        '''
+
+        d = self._depth(self.root, node, 0)
+        print("Depth: " ,d)
+
+    def _depth(self, root, target, depth):
+        if root is None:
+            return -1
+        
+        if root.data == target:
+            return depth
+        elif target < root.data:
+            return self._depth(root.left, target, depth+1)
+        elif target > root.data:
+            return self._depth(root.right, target, depth+1)
+
+
+# convert sorted array to BST
+    def convert(self, arr):
+        self._convert(arr, 0, len(arr)-1)
+
+    
+    def _convert(self, arr, start, end):
+        
+        if start > end:
+            return None
+        
+        middle = (start+end)//2
+        root = arr[middle]
+        
+        root.left = self._convert(arr, start, middle-1)
+        root.right = self._convert(arr, middle+1, end)
+        
+        return root
+    
+
+# Validate Binary Search Tree => make the array of inorder traversal and check if it is increasing order
+
+
+
+
+
         
 
         
@@ -221,17 +270,22 @@ bst.insert(15)
 bst.insert(5)
 bst.insert(1)
 bst.insert(6)
+bst.insert(20)
+bst.insert(12)
+
 # bst.inorder()
 
 # bst.delete(15)
 
 
 
-# bst.level_order()
+bst.level_order()
 
 # print(bst.search(2))
-# bst.inorder()
+bst.inorder()
 # bst.find_min()
 # bst.find_max()
 # bst.preorder()
-bst.height()
+# bst.height()
+# bst.depth(6)
+
