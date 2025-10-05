@@ -187,6 +187,22 @@ class BST:
         while current.right:
             current = current.right
         print("Max value: ", current.data)
+
+    
+    def height(self):
+        print(self._height(self.root))
+
+    def _height(self, root):
+        if root is None:
+            return -1
+        
+        left_height = 1 + self._height(root.left)
+        right_height = 1 + self._height(root.right)
+
+        height = max(left_height, right_height)
+
+
+        return height
         
 
         
@@ -205,7 +221,7 @@ bst.insert(15)
 bst.insert(5)
 bst.insert(1)
 bst.insert(6)
-bst.inorder()
+# bst.inorder()
 
 # bst.delete(15)
 
@@ -214,7 +230,8 @@ bst.inorder()
 # bst.level_order()
 
 # print(bst.search(2))
-bst.inorder()
-bst.find_min()
-bst.find_max()
+# bst.inorder()
+# bst.find_min()
+# bst.find_max()
 # bst.preorder()
+bst.height()
