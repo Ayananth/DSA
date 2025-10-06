@@ -25,6 +25,52 @@ class Trie:
         for letter, children in node.children.items():
             self._display(children, prefix+letter)
 
+    def autocomplete(self, word):
+        print("Auto complete")
+        results = []
+        node = self.root
+        for letter in word:
+            if letter not in node.children:
+                return False
+            node = node.children[letter]
+
+        def dfs(current_node, path):
+            if current_node.eow:
+                print(path)
+                results.append("".join(path))
+
+
+            for char, next_node in current_node.children.items():
+                path.append(char)
+                dfs(next_node, path)
+                path.pop()
+
+        dfs(node, list(word))
+
+
+    def delete(self, word):
+        node = self.root
+        stack = []
+        for letter in word:
+            if letter not in node.children:
+                return False
+            stack.append((letter, node))
+            node = node.children[letter]
+        if not node.eow:
+            return
+        node.eow = False
+
+        for letter, parent in reversed(stack):
+            print(letter, parent)
+            child = parent.children[letter]
+            if child.eow or child.children:
+                break
+            del parent.children[letter]
+
+
+
+
+
 
 t = Trie()
 words = [
@@ -45,5 +91,7 @@ words = [
 ]
 for word in words:
     t.insert(word)
+
+t.delete("an")
     
 t.display()
