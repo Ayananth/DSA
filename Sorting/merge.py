@@ -1,3 +1,28 @@
+'''
+Merge sort
+==========
+
+complexity -> O(n log n)
+split the array into 2 halfs until we can not split anymore
+merge it back recursively
+
+-prefered sorting algorithm for linked list
+- good for sorting large datasets
+- stable
+
+#advantages
+
+- stability
+- guranteed  complexity even for large datasets
+- natually parallel
+
+
+#disadvantage
+- uses extra space
+
+'''
+
+
 arr = [7, 12, 9, 11, 3]
 n= len(arr)
 

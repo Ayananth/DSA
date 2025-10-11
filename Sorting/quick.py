@@ -1,3 +1,28 @@
+'''
+Quick sort
+=========
+
+- select a pivot
+- place the pivot in the correct position
+- now, the left side contains values < pivot and right side values > pivot (not sorted)
+- now, recusively find and place the pivot to the correc pos for left and right
+- it is an in memory sort
+
+# Complexity
+
+- O(n^2) worst case if pivot is choosen poorly
+
+#disadvantages
+
+-not goood for smaller datasets
+-not stable
+- relative order is not preserved for duplicate elements
+- fastest general purpose sorting for large dataset if stablity is not required
+
+'''
+
+
+
 arr = [7, 12, 9, 11, 1, 3]
 
 

@@ -1,3 +1,28 @@
+'''
+Insertion sort
+==============
+Insertion sort algorithm uses one part of the array to hold the sorted part and the other part to hold the unsorted part.
+The algorithm takes one value at a time from the unsorted part and moves it to the correct pos in the sorted part. 
+This process repeats until the array is sorted. 
+
+#Complexity
+    -O(n^2) -> worst
+    -O(n) -> best case
+
+advantages
+- stable
+- simple and easy to immplement
+- suited for nearly sorted array
+- space efficient
+- less number of swaps
+
+disadvantages
+- not suited for large datasets
+- not efficient as other sorts like merge/quick
+
+
+'''
+
 arr = [7, 12, 9, 11, 3]
 
 for i in range(1, len(arr)):
@@ -10,9 +35,3 @@ for i in range(1, len(arr)):
     arr[j+1] = key 
 
 print(arr)
-
-'''
-Insertion sort algorithm uses one part of the array to hold the sorted part and the other part to hold the unsorted part.
-The algorithm takes one value at a time from the unsorted part and moves it to the correct pos in the sorted part. 
-This process repeats until the array is sorted. 
-'''
